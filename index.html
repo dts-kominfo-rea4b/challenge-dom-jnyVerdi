@@ -4,37 +4,126 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Noto Sans', sans-serif;
+        color: #fff;
+        background-color: #0d1117;
+        margin: auto;
+        text-align: center;
+      }
+    
+      #app {
+        width: 75vmin;
+        min-height: 75vmin;
+        background-color: #161b22;
+        margin-top: 5vmin;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+    
+      #todo-title {
+        font-weight: bold;
+        font-size: large;
+        margin-top: 25px;
+        margin-bottom: 5px;
+      }
+    
+      #todo-subtitle {
+        color: #c9d1d9;
+        margin-top: 10px;
+      }
+    
+      #todo-input {
+        color: #fff;
+        font-family: inherit;
+        height: 28px;
+        background-color: #0d1117;
+        border: #30363d solid 1px;
+        border-radius: 5px;
+        margin-top: 5px;
+      }
+    
+      #todo-submit {
+        font-family: inherit;
+        color: #fff;
+        height: 32px;
+        width: 64px;
+        background-color: #238636;
+        border: none;
+        border-radius: 5px;
+        line-height: 20px;
+      }
+    
+      #todo-submit:hover {
+        background-color: #2ba543;
+      }
+    
+      #todo-submit:active {
+        background-color: #238636;
+      }
+    
+      #todo-output {
+        text-align: left;
+        max-width: 70vmin;
+        overflow-wrap: break-word;
+      }
+    </style>
     <title>Challenge - DOM</title>
   </head>
   <body>
     <div id="app">
       <!-- TODO: Buatlah sebuah header dengan id todo-title -->
+      <header id="todo-title">To-Do-List</header>
       <!-- TODO: Buatlah sebuah subtitle dengan id todo-subtitle -->
+      <sub id="todo-subtitle">∽Today I need to∽</sub>
+      <br>
 
       <!-- Section: input -->
       <!-- TODO: Buatlah sebuah input bertipe text dengan id todo-input -->
+      <input type="text" id="todo-input" placeholder="Insert to do">
       <!-- TODO: Buatlah sebuah button dengan id todo-submit -->
+      <button id="todo-submit">Submit</button>
 
       <!-- Section output -->
       <!-- TODO: Buatlah sebuah <ul> dengan id todo-output -->
+        <ul id="todo-output"></ul>
     </div>
 
     <!-- ! Untuk tantangan ini, script jangan diubah ke external js yah ! -->
     <script>
       // TODO: Deklarasi variable sesuai dengan kebutuhan di sini
-      let button;
-      let input;
-      let output;
+          let button = document.querySelector('#todo-submit');
+          let input = document.querySelector('#todo-input');
+          let output = document.querySelector('#todo-output');
 
       // TODO: Buatlah sebuah fungsi dengan nama fnClickHandler
-      // Fungsi yang digunakan untuk menambahkan tulisan
-      // Jangan ubah cara deklarasi fungsinya, cukup isi saja
-      function fnClickHandler(toDoItem) {}
+      // Fungsi yang digunakan untuk menamsnya, cukup isi saja
+      function fnClickHandler(toDoItem) {
+        toDoItem.preventDefault();
+        const li = document.createElement('li');
+        li.innerText = input.value;
+        output.appendChild(li);
+        input.value = '';
+        const checkNodes = document.querySelectorAll("#todo-output li");
+        console.log(checkNodes);
+      }
 
       // TODO: register event onclick / addEventListener untuk button
+      button.addEventListener('click', fnClickHandler);
       // akan menjalankan fungsi fnClickHandler
-      
+
       // TODO: register event onkeypress / addEventListener untuk input
+      input.addEventListener('keypress', (event) => {
+        if (event.code === 'Enter') {
+          fnClickHandler(event);
+        }
+      });
       // sehingga saat di input ditekan enter akan menjalankan fungsi fnClickHandler juga
     </script>
   </body>
