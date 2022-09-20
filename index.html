@@ -111,20 +111,20 @@
         output.appendChild(li);
         input.value = '';
         const checkNodes = document.querySelectorAll("#todo-output li");
-        console.log(checkNodes);
+        console.log(...checkNodes);
       }
 
       // TODO: register event onclick / addEventListener untuk button
-      button.addEventListener('click', fnClickHandler);
       // akan menjalankan fungsi fnClickHandler
+      button.addEventListener('click', fnClickHandler);
 
       // TODO: register event onkeypress / addEventListener untuk input
+      // sehingga saat di input ditekan enter akan menjalankan fungsi fnClickHandler juga
       input.addEventListener('keypress', (event) => {
-        if (event.code === 'Enter') {
+        if (event.key === 'Enter' || code === 13 || charCode === 13) {
           fnClickHandler(event);
         }
       });
-      // sehingga saat di input ditekan enter akan menjalankan fungsi fnClickHandler juga
     </script>
   </body>
 </html>
